@@ -16,7 +16,6 @@ import org.w3c.dom.Text;
 
 public class PbLvAdapter extends BaseAdapter {
 
-    // Declare Variables
     Context context;
     LayoutInflater inflater;
     ArrayList<HashMap<String, String>> data;
@@ -44,39 +43,30 @@ public class PbLvAdapter extends BaseAdapter {
     }
 
     public View getView(final int position, View convertView, ViewGroup parent) {
-        // Declare Variables
+
         TextView stacja;
         TextView pb;
 
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View itemView = inflater.inflate(R.layout.pb_price_item, parent, false);
-        // Get the position
         resultp = data.get(position);
 
-        // Locate the TextViews in listview_item.xml
         stacja = (TextView) itemView.findViewById(R.id.stacja);
         pb = (TextView) itemView.findViewById(R.id.pb);
 
-        // Capture position and set results to the TextViews
         stacja.setText(resultp.get(PbPriceTab.STACJA));
         pb.setText(resultp.get(PbPriceTab.PB));
 
-        // Capture ListView item click
         itemView.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
-                // Get the position
                 resultp = data.get(position);
                 Intent intent = new Intent(context, PbView.class);
-                // Pass all data rank
                 intent.putExtra("stacja", resultp.get(PbPriceTab.STACJA));
-                // Pass all data country
                 intent.putExtra("pb", resultp.get(PbPriceTab.PB));
-                // Start SingleItemView Class
                 context.startActivity(intent);
-
             }
         });
         return itemView;

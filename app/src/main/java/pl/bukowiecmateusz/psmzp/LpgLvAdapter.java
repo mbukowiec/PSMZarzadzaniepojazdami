@@ -16,7 +16,6 @@ import org.w3c.dom.Text;
 
 public class LpgLvAdapter extends BaseAdapter {
 
-    // Declare Variables
     Context context;
     LayoutInflater inflater;
     ArrayList<HashMap<String, String>> data;
@@ -44,36 +43,29 @@ public class LpgLvAdapter extends BaseAdapter {
     }
 
     public View getView(final int position, View convertView, ViewGroup parent) {
-        // Declare Variables
+
         TextView stacja;
         TextView lpg;
 
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View itemView = inflater.inflate(R.layout.lpg_price_item, parent, false);
-        // Get the position
         resultp = data.get(position);
 
-        // Locate the TextViews in listview_item.xml
         stacja = (TextView) itemView.findViewById(R.id.stacja);
         lpg = (TextView) itemView.findViewById(R.id.lpg);
 
-        // Capture position and set results to the TextViews
         stacja.setText(resultp.get(LpgPriceTab.STACJA));
         lpg.setText(resultp.get(LpgPriceTab.LPG));
 
-        // Capture ListView item click
         itemView.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
-                // Get the position
                 resultp = data.get(position);
                 Intent intent = new Intent(context, LpgView.class);
-                // Pass all data rank
                 intent.putExtra("stacja", resultp.get(LpgPriceTab.STACJA));
                 intent.putExtra("lpg",resultp.get(LpgPriceTab.LPG));
-                // Start SingleItemView Class
                 context.startActivity(intent);
 
             }

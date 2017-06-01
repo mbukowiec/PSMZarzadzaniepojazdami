@@ -32,9 +32,4 @@ public class MainMenu extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), PriceCitySelect.class);
         startActivity(intent);
     }
-
-    public void openPodsumowanieTab(View view) {
-        Intent intent = new Intent(getApplicationContext(), Podsumowanie.class);
-        startActivity(intent);
-    }
 }

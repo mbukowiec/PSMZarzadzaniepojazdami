@@ -36,56 +36,39 @@ public class LpgPriceTab extends AppCompatActivity {
         new JsoupListView().execute();
 
         Intent cityIntent = getIntent();
-        // Get the result of rank
         miasto = cityIntent.getStringExtra("miasto");
     }
     String url;
-    // Title AsyncTask
     private class JsoupListView extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            // Create a progressdialog
             mProgressDialog = new ProgressDialog(LpgPriceTab.this);
-            // Set progressdialog title
             mProgressDialog.setTitle("Ceny paliw");
-            // Set progressdialog message
             mProgressDialog.setMessage("Pobieranie danych...");
             mProgressDialog.setIndeterminate(false);
-            // Show progressdialog
             mProgressDialog.show();
         }
 
         @Override
         protected Void doInBackground(Void... params) {
             url = String.valueOf("http://www.stacjebenzynowe.pl/search_stacje.php?action=srch&searchstacja_woj=&searchstacja_miasto="+miasto+"&tankowanie_miast=&paliwo=LPG&sort=2");
-            // Create an array
             arraylist = new ArrayList<HashMap<String, String>>();
 
             try {
-                // Connect to the Website URL
                 Document doc = Jsoup.connect(url).get();
-                // Identify Table Class "worldpopulation"
                 for (Element table : doc.select("tr[bgcolor='#4C5662']")) {
 
-                    // Identify all the table row's(tr)
                     for (Element row : table.select("tr:gt(1)")) {
                         HashMap<String, String> map = new HashMap<String, String>();
-
-                        // Identify all the table cell's(td)
                         Elements tds = row.select("td");
-
-                        // Retrive Jsoup Elements
-                        // Get the first td
                         map.put("stacja", tds.get(1).text());
                         map.put("lpg", tds.get(2).text());
-                        // Set all extracted Jsoup Elements into the array
                         arraylist.add(map);
                     }
                 }
             } catch (IOException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
 
@@ -94,13 +77,9 @@ public class LpgPriceTab extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Void result) {
-            // Locate the listview in listview_main.xml
             lv_lpg = (ListView) findViewById(R.id.lv_lpg);
-            // Pass the results into ListViewAdapter.java
             adapter = new LpgLvAdapter(LpgPriceTab.this, arraylist);
-            // Set the adapter to the ListView
             lv_lpg.setAdapter(adapter);
-            // Close the progressdialog
             mProgressDialog.dismiss();
         }
     }

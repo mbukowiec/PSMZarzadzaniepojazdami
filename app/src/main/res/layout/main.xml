@@ -33,14 +33,14 @@
         android:id="@+id/ubezpieczenie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Wprowadź datę ubezpieczenia ..."
+        android:hint="Wprowadź datę ubezpieczenia (dd-MM-yyyy) ..."
         android:visibility="gone" />
 
     <EditText
         android:id="@+id/przeglad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Wprowadź datę przeglądu ..."
+        android:hint="Wprowadź datę przeglądu (dd-MM-yyyy) ..."
         android:visibility="gone"/>
 
     <LinearLayout

@@ -13,11 +13,11 @@ package pl.bukowiecmateusz.psmzp;
 
 public class CarProfilesAdapter extends ArrayAdapter<CarProfiles> {
     private Activity context;
-    private List<CarProfiles> tasks;
-    public CarProfilesAdapter(Activity context, List<CarProfiles> tasks) {
-        super(context, R.layout.car_list_item, tasks);
+    private List<CarProfiles> cars;
+    public CarProfilesAdapter(Activity context, List<CarProfiles> cars) {
+        super(context, R.layout.car_list_item, cars);
         this.context = context;
-        this.tasks = tasks;
+        this.cars = cars;
     }
 
     static class ViewHolder {
@@ -45,20 +45,19 @@ public class CarProfilesAdapter extends ArrayAdapter<CarProfiles> {
         } else {
             viewHolder = (ViewHolder) rowView.getTag();
         }
-        CarProfiles task = tasks.get(position);
-        viewHolder.typeRejestracja.setText(task.getRejestracja());
-        viewHolder.typeMarka.setText(task.getMarka());
-        viewHolder.typeUbezpieczenie.setText(task.getUbezpieczenie());
-        viewHolder.typePrzeglad.setText(task.getPrzeglad());
+        CarProfiles car = cars.get(position);
+        viewHolder.typeRejestracja.setText(car.getRejestracja());
+        viewHolder.typeMarka.setText(car.getMarka());
+        viewHolder.typeUbezpieczenie.setText(car.getUbezpieczenie());
+        viewHolder.typePrzeglad.setText(car.getPrzeglad());
 
-        if(task.isUsun()) {
+        if(car.isUsun()) {
             viewHolder.carItem.setBackgroundColor(Color.LTGRAY);
-
-
         } else {
             viewHolder.carItem.setBackgroundColor(Color.WHITE);
-
         }
+
+
         return rowView;
     }
 }

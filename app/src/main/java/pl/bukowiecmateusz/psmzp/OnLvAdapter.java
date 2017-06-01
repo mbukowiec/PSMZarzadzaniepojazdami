@@ -44,37 +44,28 @@ public class OnLvAdapter extends BaseAdapter {
     }
 
     public View getView(final int position, View convertView, ViewGroup parent) {
-        // Declare Variables
         TextView stacja;
         TextView on;
 
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         View itemView = inflater.inflate(R.layout.on_price_item, parent, false);
-        // Get the position
         resultp = data.get(position);
 
-        // Locate the TextViews in listview_item.xml
         stacja = (TextView) itemView.findViewById(R.id.stacja);
         on = (TextView) itemView.findViewById(R.id.on);
 
-        // Capture position and set results to the TextViews
         stacja.setText(resultp.get(OnPriceTab.STACJA));
         on.setText(resultp.get(OnPriceTab.ON));
 
-        // Capture ListView item click
         itemView.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
-                // Get the position
                 resultp = data.get(position);
                 Intent intent = new Intent(context, OnView.class);
-                // Pass all data rank
                 intent.putExtra("stacja", resultp.get(OnPriceTab.STACJA));
-                // Pass all data country
                 intent.putExtra("on",resultp.get(OnPriceTab.ON));
-                // Start SingleItemView Class
                 context.startActivity(intent);
 
             }

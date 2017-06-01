@@ -14,7 +14,6 @@ public class PriceTypeSelect extends AppCompatActivity {
         setContentView(R.layout.activity_price_type_select);
 
         Intent cityIntent = getIntent();
-        // Get the result of rank
         miasto = cityIntent.getStringExtra("miasto");
     }
 
